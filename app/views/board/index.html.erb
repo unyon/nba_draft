@@ -1,0 +1,9 @@
+<h1>NBA Draft Index Page</h1>
+
+<% @picks.each do |pick| %>
+	<p><%=pick.draft_pick %> - <%= pick.round %></p>
+	<% end %>
+
+	<% @teams.each do |team| %>
+	<p><%=team.logo %> <%=team.city %>  <%= team.nickname %></p>
+	<% end %>

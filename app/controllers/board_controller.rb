@@ -4,7 +4,18 @@ class BoardController < ApplicationController
 		@board = Board.all
 		@teams = Team.all
 		@players = Player.all
-		@picks = Pick.all
+		@picks = Pick.all.order(:draft_pick)
+
 	end
+
+	# private
+
+	# helper_method :current_course
+
+	# def current_course
+	# 	@current_course ||= Course.find(params[:id])
+	# end
+
+
 end
 

@@ -5,6 +5,8 @@ class BoardController < ApplicationController
 		@teams = Team.all
 		@players = Player.all
 		@picks = Pick.all.order(:draft_pick)
+		@current_pick = Pick.where(:current_pick, true)
+		@pick_select = Pick.find_by_id(params[:id])
 
 	end
 

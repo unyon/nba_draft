@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :admins
   root 'board#index'
+  #put 'picks#update'
+  resources :picks, only: [:create, :edit, :update]
+  resources :players, only: [:update]
+  resources :teams, only: [:update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

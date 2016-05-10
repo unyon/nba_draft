@@ -6,17 +6,25 @@
 .pick-box {
 	background: #fff;
 	border: 1px solid #e8e8e8;
+	padding: 10;
 }
 
 .player-group {
 	display:inline-block ; 
 	border: 1px solid #e8e8e8;
     margin-right: 25px;
+    padding-bottom:  8px;
 /*	float: right;*/
 }
 
 .player-box {
 	background: #fff;
 	border: 1px solid #e8e8e8;
-	padding: 0;
+	padding: 8px;
+}
+
+.current-pick {
+	background: #fff;
+	border: 1px solid #e8e8e8;
+	padding: 8px;
 }

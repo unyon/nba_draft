@@ -1,32 +1,8 @@
-<h1>NBA Draft Index Page</h1>
-<div class="current-pick text-center">
-	<% @picks.each do |pick| %>
-		<% if pick.current_pick === true %>
-			<h3>On the clock: <%= image_tag pick.team.logo %>&nbsp;<%= pick.team.city %> <%= pick.team.nickname %></h3>
-		<% end %>
-	<% end %>
-</div>
-
-<div class="pick-group pull-left col-xs-5 col-xs-offset-1">
-	<% @picks.each do |pick| %>
-		<div class="pick-box">
-			<p>&nbsp;<%=pick.draft_pick %> . &nbsp;
-			<%= image_tag pick.team.logo %>&nbsp;<%= pick.team.city %> <%= pick.team.nickname %> 
-			<% if pick.player_id != nil %> -
-				<%= pick.player.first_name %>&nbsp;<%= pick.player.last_name %> / <%= pick.player.old_team %></p>
-			<% end %>
-		</div>
-	<% end %>
-</div>
-
-<div class="player-group pull-right col-xs-5">
-<h3>Available Players</h3>
-	<% @players.each do |player| %>
-		<% if player.team_id == nil && player.pick_id == nil %><!--  has not been selected -->
-			<div class="player-box">				
-				<p><%= player.first_name %> <%= player.last_name %>&nbsp;<%= player.old_team %>&nbsp;<%= player.position %>&nbsp;<%= link_to 'Select', pick_path(@current_pick), class: 'btn btn-primary', 
-					method: :put %> </p>
-			</div>
-		<% end %>
-	<% end %>
-</div>
+<h1>Welcome</h1>
+<h2> Join a New Game </h2>
+<h6> Click on the game name to join it </h6>
+<h1>New Game</h1>
+<%= form_for :board, method: "POST",:url => { :action => :create } do |f| %>
+  <br />
+  <%= f.submit %>
+<% end %>		

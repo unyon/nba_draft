@@ -2,22 +2,37 @@ class BoardController < ApplicationController
 
 	def index
 		@board = Board.all
-		@teams = Team.all
-		@players = Player.all
-		@picks = Pick.all.order(:draft_pick)
-		@current_pick = Pick.where(:current_pick, true)
-		@pick_select = Pick.find_by_id(params[:id])
-
 	end
 
-	# private
+	def show
+		@board = Board.find_by_id(params[:id])
+		@teams = @board.teams.all
+		@team = @teams.find_by_id(:team_id)
+		@players = @board.players
+		@picks = @board.picks.order(:draft_pick)
+		@pick = @picks.where(team_id: @team).first
+		@current_pick = @board.picks.where(current_pick: true).first
+	end
 
-	# helper_method :current_course
+	def new
+		@board = Board.new
+	end
 
-	# def current_course
-	# 	@current_course ||= Course.find(params[:id])
-	# end
+	def create
+		@board = Board.create(params[:id])
+		@board.set_up_board
+		redirect_to board_path(@board)
+	end
 
+
+	def update
+		@board = Board.find_by_id(params[:id])
+		@players = @board.players
+		@picks = @board.picks
+		@teams = @board.teams
+
+
+	end
 
 end
 

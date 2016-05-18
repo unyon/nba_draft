@@ -1,0 +1,33 @@
+<h1>NBA Draft Index Page</h1>
+<div class="current-pick text-center">
+	<% if @current_pick %>
+		<%= @current_pick.draft_pick %>. On the clock:&nbsp;<%= image_tag @current_pick.team.logo %>
+		<%= @current_pick.team.city %>&nbsp;<%= @current_pick.team.nickname %>
+	<% end %>
+</div>
+
+<div class="pick-group pull-left col-xs-5 col-xs-offset-1">
+	<% @picks.each do |pick| %>
+		<div class="pick-box">
+			<p>&nbsp;<%=pick.draft_pick %> . &nbsp;
+				<% if pick.team_id.nil? === false %>
+					<%= image_tag pick.team.logo %>&nbsp;<%= pick.team.city %>&nbsp;<%= pick.team.nickname %>&nbsp;- 
+					<% if pick.player_id.nil? == false %>
+							<%= pick.player.first_name %>&nbsp;<%= pick.player.last_name %>/<%= pick.player.old_team %>
+					<% end %></p>
+				<% end %>
+		</div>
+	<% end %>
+</div>
+
+<div class="player-group pull-right col-xs-5">
+<h3>Available Players</h3>
+	<% @players.each do |player| %>
+		<% if player.team_id == nil && player.pick_id == nil %><!--  has not been selected -->
+			<div class="player-box">				
+				<p><%= player.first_name %> <%= player.last_name %>&nbsp;<%= player.old_team %>&nbsp;<%= player.position %>&nbsp;<%= link_to 'Select', player_path(player.id), class: 'btn btn-primary', 
+					method: :put %> </p>
+			</div>
+		<% end %>
+	<% end %>
+</div>

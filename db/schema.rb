@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509192602) do
+ActiveRecord::Schema.define(version: 20160516214812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20160509192602) do
   create_table "boards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "pick_id"
   end
 
   create_table "picks", force: :cascade do |t|
@@ -48,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160509192602) do
     t.integer  "team_id"
     t.integer  "player_id"
     t.boolean  "current_pick"
+    t.integer  "board_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -58,12 +62,14 @@ ActiveRecord::Schema.define(version: 20160509192602) do
     t.string   "grade"
     t.string   "age"
     t.string   "mock_rank"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "old_team"
     t.integer  "team_id"
     t.integer  "value"
     t.integer  "pick_id"
+    t.integer  "board_id"
+    t.boolean  "is_selected?"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -74,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160509192602) do
     t.string   "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "board_id"
   end
 
 end
